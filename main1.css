@@ -1,0 +1,48 @@
+.strikeout
+{
+    text-decoration: line-through;
+    color: #b8c2cc;
+}
+.strikeout:hover 
+{
+    color: #8795a1;
+}
+.priority 
+{
+    color: #de751f;
+}
+.btn-cancel {
+    background: #ef5753;
+    color: #fff;
+
+  }
+  .btn {
+    border: none;
+    border-radius: 3px;
+    margin: auto;
+    padding: 0.5rem 0.75rem;
+    cursor: pointer;
+    font-size: 0.9rem;  
+  }
+  .btn-primry
+  {
+    background: rgb(33, 182, 33);
+    color: #fff;
+  }
+  #shopping-list {
+    background: #fff;
+    padding: 2rem;
+    margin: 1rem;
+    border-radius: 3px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+    max-width:500px;
+  }
+  .header
+  {
+    display: flex;
+    
+  }
+  .static-class
+  {
+    font-size: 20px;
+  }

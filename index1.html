@@ -1,0 +1,81 @@
+ <!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Список дел</title>
+        <link rel="stylesheet" href="main1.css">
+    </head>
+    <body>
+
+        <div id="shopping-list">
+            <div class="header">
+              <h1>{{header || 'Welcome'}}</h1>  
+              <button  v-if="editing" @click="doEdit(false)" class="btn btn-cancel">Отмена</button>
+              <button v-else="" @click="doEdit(true)" class="btn btn-primry">Добавить дело</button>
+            </div>
+            
+            <div v-if="editing" class="add-item-form">
+                <input v-on:keyup.enter="saveItem()" v-model="newItem" type="text" placeholder="Добавить дело"> 
+                
+                    <label>
+                      <input type="checkbox" v-model="newItemHighPriority">
+                      Высокий приоритет
+                    </label> 
+                
+                <button v-bind:disabled="newItem.length === 0 " v-on:click="saveItem()" class="button.btn.btn-primary ">Сохранить дело</button>   
+            </div>
+            <p v-if="items.length === 0"> Поздравляю, список дел пуст, Добби свободен</p>
+            <ul>
+                <li 
+                v-for="item in items"                     
+                :key="item.id"
+                @click="togglePurchased(item)"
+                :class="{strikeout:item.purchased,priority:item.highPriority}"
+                class="static-class"
+                    >{{item.label}}
+                    
+                </li>
+            </ul>
+
+            
+        </div>
+        <script src="https://unpkg.com/vue@3"></script>
+        <script>
+            const shoppingList = Vue.createApp({
+                data(){
+                    return {
+                        header: "Список дел",
+                        newItem: '',
+                        editing: false,
+                        newItemHighPriority: false,
+                        items: [
+                        {id: 1, label:"Помыть посуду", purchased:false, highPriority:false},
+                        {id: 2, label:"Погулять с собакой", purchased:false, highPriority:true},
+                        ]
+                    }
+                },
+                methods:{
+                saveItem()
+                {
+                    this.items.push({id:this.items.length + 1, label: this.newItem,highPriority:this.newItemHighPriority})
+                    this.newItem = ""
+                    this.newItemHighPriority = ""
+                },
+                doEdit(editing)
+                {
+                    this.editing = editing
+                    this.newItem = ""
+                    this.newItemHighPriority = ""
+
+                },
+                togglePurchased(item)
+                {
+                    item.purchased = !item.purchased
+                }
+            }
+            })
+            
+            .mount('#shopping-list')
+        </script>
+    </body>
+</html>
